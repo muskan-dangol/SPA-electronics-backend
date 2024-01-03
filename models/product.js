@@ -10,13 +10,15 @@ const productSchema = new Schema({
   stock: { type: Number },
   brand: { type: String },
   category: { type: String },
-  img:
-    {
-        data: Buffer,
-        contentType: String
-    }
+  rating: {
+    value: { type: Number, required: true, default: 0 },
+  },
+  img: {
+    data: Buffer,
+    contentType: String,
+  },
 });
 
-const ModelClass = mongoose.model("product", productSchema);
+const Product = mongoose.model("product", productSchema);
 
-module.exports = ModelClass;
+module.exports = Product;

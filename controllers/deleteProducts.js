@@ -11,6 +11,7 @@ const deletedProduct = async (req, res, next) => {
       stock,
       brand,
       category,
+      rating, 
       img,
     } = req.body;
     const existingProduct = await Product.findOne({
@@ -22,6 +23,7 @@ const deletedProduct = async (req, res, next) => {
       stock: stock,
       brand: brand,
       category: category,
+      rating: rating
     });
     if (!existingProduct) {
       return res.status(404).send({ error: "Product is not available!" });
@@ -36,6 +38,7 @@ const deletedProduct = async (req, res, next) => {
         stock,
         brand,
         category,
+        rating, 
         img,
       },
       { new: true }

@@ -2,31 +2,13 @@ const Product = require("../models/product");
 
 const updatedProduct = async (req, res, next) => {
   try {
-    const {
-      title,
-      id,
-      description,
-      price,
-      discountPercentage,
-      stock,
-      brand,
-      category,
-      img,
-    } = req.body;
-    await Product.findOneAndUpdate(
-      { id },
-      {
-        title,
-        description,
-        price,
-        discountPercentage,
-        stock,
-        brand,
-        category,
-        img,
-      },
-      { new: true }
-    );
+    const payload = req.body;
+    console.log(payload);
+    const id = req.params.id;
+    const result = await Product.findOneAndUpdate({ id }, payload, {
+      new: true,
+    });
+    console.log(result);
     return res.status(200).json({
       message: "updated successfully",
     });
