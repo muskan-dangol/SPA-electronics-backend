@@ -3,7 +3,6 @@ const Product = require("../models/product");
 const updatedProduct = async (req, res, next) => {
   try {
     const payload = req.body;
-    console.log(payload);
     const id = req.params.id;
     const result = await Product.findOneAndUpdate({ id }, payload, {
       new: true,

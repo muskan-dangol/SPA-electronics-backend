@@ -56,7 +56,7 @@ const addProduct = async (req, res, next) => {
       stock: stock,
       brand: brand,
       category: category,
-      rating: [{ value: rating }],
+      rating: { value: rating },
       img: img,
     });
     await product.save();

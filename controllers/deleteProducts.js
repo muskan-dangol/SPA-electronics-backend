@@ -4,7 +4,6 @@ const deletedProduct = async (req, res, next) => {
   try {
     const {
       title,
-      id,
       description,
       price,
       discountPercentage,
@@ -16,7 +15,6 @@ const deletedProduct = async (req, res, next) => {
     } = req.body;
     const existingProduct = await Product.findOne({
       title: title,
-      id: id,
       description: description,
       price: price,
       discountPercentage: discountPercentage,
@@ -29,7 +27,6 @@ const deletedProduct = async (req, res, next) => {
       return res.status(404).send({ error: "Product is not available!" });
     }
     await Product.findOneAndDelete(
-      { id },
       {
         title,
         description,
