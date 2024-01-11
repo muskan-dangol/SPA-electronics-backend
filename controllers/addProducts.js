@@ -20,7 +20,6 @@ const addProduct = async (req, res, next) => {
       !id ||
       !description ||
       !price ||
-      !discountPercentage ||
       !stock ||
       !brand ||
       !category ||
@@ -56,7 +55,7 @@ const addProduct = async (req, res, next) => {
       stock: stock,
       brand: brand,
       category: category,
-      rating: { value: rating },
+      rating: rating ,
       img: img,
     });
     await product.save();

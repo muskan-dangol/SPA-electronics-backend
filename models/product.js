@@ -11,7 +11,7 @@ const productSchema = new Schema({
   brand: { type: String },
   category: { type: String },
   rating: {
-    value: { type: Number, required: true, default: 0 },
+    type: Number,
   },
   img: {
     data: Buffer,

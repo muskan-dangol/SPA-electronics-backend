@@ -2,44 +2,14 @@ const Product = require("../models/product");
 
 const deletedProduct = async (req, res, next) => {
   try {
-    const {
-      title,
-      description,
-      price,
-      discountPercentage,
-      stock,
-      brand,
-      category,
-      rating, 
-      img,
-    } = req.body;
-    const existingProduct = await Product.findOne({
-      title: title,
-      description: description,
-      price: price,
-      discountPercentage: discountPercentage,
-      stock: stock,
-      brand: brand,
-      category: category,
-      rating: rating
-    });
+    let id = req.params.id;
+    const existingProduct = await Product.findById(id);
+    console.log(existingProduct);
     if (!existingProduct) {
       return res.status(404).send({ error: "Product is not available!" });
     }
-    await Product.findOneAndDelete(
-      {
-        title,
-        description,
-        price,
-        discountPercentage,
-        stock,
-        brand,
-        category,
-        rating, 
-        img,
-      },
-      { new: true }
-    );
+    await Product.findOneAndDelete({  _id: id });
+
     return res.status(200).json({
       message: "deleted successfully",
     });

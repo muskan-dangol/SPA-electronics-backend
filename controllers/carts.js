@@ -56,7 +56,7 @@ const addCart = async (req, res) => {
 const getCart = async (req, res) => {
   try {
     const id = req.params.id;
-    let carts = await Cart.find();
+    // let carts = await Cart.find();
     let cart = await cartsById(id);
 
     console.log(cart);

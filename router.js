@@ -13,9 +13,9 @@ const {
 module.exports = function (app) {
   app.get("/", getAllProducts);
   app.get("/:id", productById);
-  app.post("/product", addProduct);
-  app.put("/products/:id", updatedProduct);
-  app.delete("/products/:id", deletedProduct);
+  app.post("/", addProduct);
+  app.put("/product/:id", updatedProduct);
+  app.delete("/:id", deletedProduct);
 
   // cart
   app.post("/cart", addCart);
