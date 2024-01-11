@@ -3,7 +3,7 @@ const Product = require("../models/product");
 const productById = async (req, res) => {
   try {
     let id = req.params.id;
-    let productDetails = await Product.findById(id);
+    let productDetails = await Product.findById({_id: id});
 
     res.status(200).json(productDetails);
   } catch (err) {

@@ -4,7 +4,6 @@ const addProduct = async (req, res, next) => {
   try {
     const {
       title,
-      id,
       description,
       price,
       discountPercentage,
@@ -15,17 +14,9 @@ const addProduct = async (req, res, next) => {
       img,
     } = req.body;
 
-    if (
-      !title ||
-      !id ||
-      !description ||
-      !price ||
-      !stock ||
-      !brand ||
-      !category ||
-      !rating ||
-      !img
-    ) {
+    console.log(req.body)
+
+    if (!(title && description && price && stock && brand && category && img)) {
       return res
         .status(422)
         .send({ error: "you must enter all the details of product." });
@@ -33,14 +24,13 @@ const addProduct = async (req, res, next) => {
 
     const existingProduct = await Product.findOne({
       title: title,
-      id: id,
       description: description,
       price: price,
       discountPercentage: discountPercentage,
       stock: stock,
       brand: brand,
       category: category,
-      rating: rating
+      rating: rating,
     });
     if (existingProduct) {
       return res.status(422).send({ error: "Product is already available!" });
@@ -48,14 +38,13 @@ const addProduct = async (req, res, next) => {
 
     const product = await Product.create({
       title: title,
-      id: id,
       description: description,
       price: price,
       discountPercentage: discountPercentage,
       stock: stock,
       brand: brand,
       category: category,
-      rating: rating ,
+      rating: rating,
       img: img,
     });
     await product.save();

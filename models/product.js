@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
   title: { type: String, unique: false },
-  id: { type: Number, autoIncrement: true, primaryKey: true },
   description: { type: String },
   price: { type: Number },
   discountPercentage: { type: Number },

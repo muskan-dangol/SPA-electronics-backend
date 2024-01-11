@@ -4,7 +4,7 @@ const updatedProduct = async (req, res, next) => {
   try {
     const payload = req.body;
     const id = req.params.id;
-    const result = await Product.findOneAndUpdate({ id }, payload, {
+    const result = await Product.findOneAndUpdate({ _id: id }, payload, {
       new: true,
     });
     console.log(result);
