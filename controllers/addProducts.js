@@ -23,18 +23,13 @@ const addProduct = async (req, res, next) => {
     }
 
     const existingProduct = await Product.findOne({
-      title: title,
-      description: description,
-      price: price,
-      discountPercentage: discountPercentage,
-      stock: stock,
-      brand: brand,
-      category: category,
-      rating: rating,
-    });
+      title: { $regex: new RegExp("^" + title + "$", "i") },
+      brand: { $regex: new RegExp("^" + brand + "$", "i") },
+      category: { $regex: new RegExp("^" + category + "$", "i") },
+    });    
     if (existingProduct) {
       return res.status(422).send({ error: "Product is already available!" });
-    }
+    }    
 
     const product = await Product.create({
       title: title,
