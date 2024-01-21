@@ -10,16 +10,25 @@ const {
   EmptyCart,
 } = require("./controllers/carts");
 
+const { getAllUsers } = require("./controllers/user");
+const { login, signup} = require("./controllers/auth/index")
+
 module.exports = function (app) {
-  app.get("/", getAllProducts);
-  app.get("/:id", productById);
-  app.post("/", addProduct);
-  app.put("/product/:id", updatedProduct);
-  app.delete("/:id", deletedProduct);
+  app.get("/products", getAllProducts);
+  app.get("/products/:id", productById);
+  app.post("/products", addProduct);
+  app.put("/products/:id", updatedProduct);
+  app.delete("/products/:id", deletedProduct);
 
   // cart
   app.post("/cart", addCart);
   app.get("/cart/:id", getCart);
   app.put("/cart/:id", updateCart);
   app.delete("/cart", EmptyCart);
+
+  // users
+ 
+  app.get('/users', getAllUsers);
+  app.post("/login", login);
+  app.post("/signup", signup);
 };
